@@ -10,9 +10,9 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
   .state('Home', {
     url: '/',
-    controller: 'ExampleCtrl as home',
+    controller: 'HomeCtrl as home',
     templateUrl: 'home.html',
-    title: 'Home'
+    title: '고려대학교 연구포털 공동기기 네트워크 맵'
   });
 
   $urlRouterProvider.otherwise('/');
