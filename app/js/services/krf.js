@@ -27,24 +27,17 @@ var servicesModule = require('./_index.js');
 /**
  * @ngInject
  */
-function KrfService($q, $http) {
+function KrfService($q, $http, AppSettings) {
 
   var service = {};
 
-  service.get = function() {
-    var deferred = $q.defer(),
-      headers = {
-        'res-protocol': 'json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      formData = {
-        'nequ050_supp_org_cd': 10017
-      };
+  service.get = function(url, formData) {
+    var d = $q.defer();
 
     $http({
       method: 'POST',
-      url: 'https://krf.korea.ac.kr/nequ/nEQU3010E/selectEquList.do',
-      headers: headers,
+      url: url,
+      headers: AppSettings.requestHeaders,
       transformRequest: function(obj) {
         var str = [];
         for(var p in obj)
@@ -53,12 +46,22 @@ function KrfService($q, $http) {
       },
       data: formData
     }).success(function(data) {
-      deferred.resolve(data);
+      d.resolve(data);
     }).error(function(err, status) {
-      deferred.reject(err, status);
+      d.reject(err, status);
     });
 
-    return deferred.promise;
+    return d.promise;
+  };
+
+  service.getAll = function(arr) {
+    var d = $q.defer();
+
+    $q.all(arr).then(function(data) {
+      d.resolve(data);
+    });
+
+    return d.promise;
   };
 
   return service;
