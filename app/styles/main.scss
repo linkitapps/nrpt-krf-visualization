@@ -1,9 +1,40 @@
 @import 'vars';
 @import 'typography';
 
+html,
 body {
-  font-family: Helvetica, sans-serif;
-  color: $font-color--dark;
-  background-color: $background--light;
-  padding: $half-space;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 50px auto;
+  width: 1000px;
+}
+
+h1 {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+h5 {
+  margin-top: 50px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+#chartContainer {
+  position: relative;
+  height: 700px;
+}
+
+#ajaxSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -24px;
+  margin-left: -24px;
+  width: 48px;
+  height: 48px;
 }
